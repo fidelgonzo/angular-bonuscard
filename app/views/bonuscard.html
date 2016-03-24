@@ -1,0 +1,123 @@
+
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light " >
+
+
+<!-- CUSTOMERS -->
+
+<div class="col w-lg lter b-r">
+  <div class="vbox">
+    <div class="wrapper-xs b-b">
+      <div class="input-group m-b-xxs">
+        <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+        <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="Search {{group.name ? group.name : 'All'}}" ng-model="query">
+      </div>
+    </div>
+    <div class="row-row">
+      <div class="cell scrollable hover">
+        <div class="cell-inner">
+          <div class="m-t-n-xxs">
+            <div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
+             <a ng-repeat="item in bonusCardCustomers | filter:query | orderBy:'customerName'" ng-dblclick="editItem(item)" class="list-group-item m-l hover-anchor b-a no-select" ng-class="{'focus m-l-none': item.selected}" ng-click="selectCustomer(item)">
+                <span class="text-xs text-muted pull-right">
+                  {{ item.points | number : 2 }} <i class="fa fa-circle text-warning m-r-xs m-l-sm"></i> 
+                </span> 
+
+                <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }">
+                  {{ item.customerName ? item.customerName : 'N/A' }}                 
+                </span>
+              </a>
+            </div>
+          </div>            
+        </div>
+      </div>
+    </div>      
+  </div>
+</div>
+<!-- /column -->
+
+
+<!-- BONUS CARD HISTORY -->
+<div class="col bg-white-only" ng-show="detailVisible">
+  <div class="vbox">
+    
+  
+   <!--  <div class="wrapper-md" id="myGrid">
+      <div class="panel panel-default">
+
+        <div class="table-responsive">
+          <div ng-grid="gridOptions" style="min-height:420px"></div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="wrapper-md">
+
+      <div class="row">
+        <div class="col-md-6">
+          <span class="topheader">{{ bonusCard.bonusCardExtId }}</span>      
+        </div>
+        
+
+        <div class="col-md-4">
+          <div class="r item hbox no-border">
+            <div class="col r-r">
+              <div class="text-primary-dk font-thin topheader" style="text-align:right">
+                <span>{{ bonusCardCustomer.points | number : 2 }}</span>
+                <i class="fa fa-fw fa-circle text-muted" color="#fad733" label-color="" style="color: rgb(250, 215, 51);"></i>
+              </div>
+            </div>
+           <!--  <div class="col w-xs v-middle text-right-xs hidden-md ">
+              <div ng-init="data1=[60,40]" ui-jq="sparkline" ui-options="[100,0], {type:'pie', height:40, sliceColors:['#fad733','#fff']}" class="sparkline inline"><canvas width="40" height="40" style="display: inline-block; width: 40px; height: 40px; vertical-align: top;"></canvas>
+              </div>
+            </div> -->
+            
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn m-t-sm w-xs btn-info pull-right" ng-click="edit(bonusCard)">Edit</button>
+        </div>
+
+      </div>
+
+      <div class="panel panel-default" ng-show="editVisible">
+        <div class="panel-heading font-bold">                  
+          Edit card
+        </div>
+        <div class="panel-body">
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputEmail2">Add bonus points</label>
+              <input type="points" class="form-control" id="exampleInputEmail2" placeholder="points" ng-model="newPoints">
+            </div>
+            <button class="btn btn-success" ng-click="editPoints(newPoints)">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          History
+        </div>
+
+        <div id="grid1" ui-grid="{ data: history }" class="grid"></div>
+
+      </div>
+
+
+</div>
+<!-- /MAIN GRID -->
+
+
+<!-- ACCOUNT -->
+
+<div ng-show="accountVisible">
+  account comes here
+  <button ng-click="selectHistory(item)"> HIT ME </button>
+</div>
+
+
+
+
+
+</div>
+<!-- /hbox layout
