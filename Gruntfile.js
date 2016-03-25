@@ -80,7 +80,7 @@ module.exports = function(grunt) {
       },
       proxies: [{
         context: '/blacksheep-service', // the context of the data service
-        host: 'pos.black-sheep.sk', // wherever the data service is running
+        host: 'localhost', // wherever the data service is running
         port: 8080 // the port that the data service is running on
       }],
       livereload: {
